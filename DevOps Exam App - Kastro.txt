@@ -219,7 +219,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-               git url: 'https://github.com/didin8080/devops-exam-app.git',
+                git url: 'https://github.com/didin8080/devops-exam-app.git',
                     branch: 'master'
             }
         }
@@ -245,6 +245,7 @@ pipeline {
                 }
             }
         }
+
         stage('Verify Docker Compose') {
             steps {
                 sh '''
@@ -252,7 +253,7 @@ pipeline {
                 '''
             }
         }
-    }
+
         stage('Build Docker Image') {
             steps {
                 dir('backend') {
@@ -267,7 +268,6 @@ pipeline {
             }
         }
 
-        // Added Docker Scout Image Analysis
         stage('Docker Scout Image Analysis') {
             steps {
                 script {
@@ -337,4 +337,4 @@ pipeline {
             archiveArtifacts artifacts: 'trivy-fs-report.html', allowEmptyArchive: true
         }
     }
-
+}
